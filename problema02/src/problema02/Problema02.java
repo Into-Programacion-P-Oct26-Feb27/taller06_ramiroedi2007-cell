@@ -6,6 +6,7 @@ package problema02;
 
 import java.util.Locale;
 import java.util.Scanner;
+
 /**
  *
  * @author SALASC
@@ -19,75 +20,98 @@ public class Problema02 {
         // TODO code application logic here
         Scanner entrada = new Scanner(System.in);
         entrada.useLocale(Locale.US);
-        String cadenaFinal = "Peaje: ""Buena via""\n\n";
+        String cadenaFinal = "Peaje \"Buena via\"\n\n";
+        String propi;
         double avaluo;
+        double porcentaje;
         double valorBase;
-        double recargo;
+        double recargo = 0;
         double total;
         int opcion;
-        double num1;
-        double num2;
+        double peaje;
 
-        System.out.println("Ingrese la operacion matematica.\n"
-                + "1 Suma\n"
-                + "2 Resta\n"
-                + "3 Multiplicacion\n"
-                + "4 Division\n"
-                + "5 Modulo\n"
-                + "6 Potencia\n");
+        System.out.println("Ingrese su tipo de vehiculo\n"
+                + "1 Vehiculo liviano particular\n"
+                + "2 Vehiculo grande particular\n"
+                + "3 Taxi\n"
+                + "4 Bus urbano\n");
         opcion = entrada.nextInt(); // 4
-        if (opcion >= 7 || opcion <= 0) {
-            System.out.println("Ninguna de la opciones es correcta");
+        if (opcion >= 5 || opcion <= 0) {
+            System.out.println("Ninguna de la opciones es valida");
         } else {
-            System.out.println("Ingrese el valor del primer numero");
-            num1 = entrada.nextDouble();
-            cadenaFinal = String.format("%sPrimer numero:%s\n", cadenaFinal, num1);
-            System.out.println("Ingrese el valor del segundo numero");
-            num2 = entrada.nextDouble();
-            cadenaFinal = String.format("%sSegundo numero:%s\n", cadenaFinal, num2);
+            entrada.nextLine();
+            System.out.println("Ingrese el nombre del propietario");
+            propi = entrada.nextLine();
+            cadenaFinal = String.format("%sPropietario: %s\n", cadenaFinal, propi);
+            System.out.println("Ingrese el valor del avaulo del vehiculo");
+            avaluo = entrada.nextDouble();
 
             switch (opcion) {
+
                 case 1:
-                    suma = num1 + num2;
-                    cadenaFinal = String.format("%sOperacion seleccionada: Suma\n\n"
-                            + "Resultado: %s ", cadenaFinal, suma);
+                    porcentaje = 0.0001;
+                    valorBase = 2.00;
+                    peaje = avaluo * porcentaje;
+                    peaje = peaje + valorBase;
+                    if (avaluo > 30000) {
+                        recargo = 1.50;
+                    }
+                    total = peaje + recargo;
+                    cadenaFinal = String.format("%sTipo de vehiculo: Vehículo liviano particular\n"
+                            + "Avaluo: $%.2f\n"
+                            + "Valor base del peaje: $%.2f\n"
+                            + "Recargo: $%.2f\n\n"
+                            + "Total a cancelar: $%.2f\n", cadenaFinal, avaluo, peaje, recargo, total);
                     break;
 
                 case 2:
-                    resta = num1 - num2;
-                    cadenaFinal = String.format("%sOperacion seleccionada:Resta\n\n"
-                            + "Resultado: %s ", cadenaFinal, resta);
+                    porcentaje = 0.0002;
+                    valorBase = 2.50;
+                    peaje = avaluo * porcentaje;
+                    peaje = peaje + valorBase;
+                    if (avaluo > 30000) {
+                        recargo = 1.50;
+                    }
+                    total = peaje + recargo;
+                    cadenaFinal = String.format("%sTipo de vehiculo: Vehículo liviano particular\n"
+                            + "Avaluo: $%.2f\n"
+                            + "Valor base del peaje: $%.2f\n"
+                            + "Recargo: $%.2f\n\n"
+                            + "Total a cancelar: $%.2f\n", cadenaFinal, avaluo, peaje, recargo, total);
                     break;
 
                 case 3:
-                    multiplicacion = num1 * num2;
-                    cadenaFinal = String.format("%sOperacion seleccionada: Multiplicacion\n\n"
-                            + "Resultado:%s", cadenaFinal, multiplicacion);
+                    porcentaje = 0.0004;
+                    valorBase = 1.50;
+                    peaje = avaluo * porcentaje;
+                    peaje = peaje + valorBase;
+                    recargo = 0;
+                    total = peaje + recargo;
+                    cadenaFinal = String.format("%sTipo de vehiculo: Vehículo liviano particular\n"
+                            + "Avaluo: $%.2f\n"
+                            + "Valor base del peaje: $%.2f\n"
+                            + "Recargo: $%.2f\n\n"
+                            + "Total a cancelar: $%.2f\n", cadenaFinal, avaluo, peaje, recargo, total);
                     break;
                 case 4:
-                    division = num1 / num2;
-                    cadenaFinal = String.format("%sOperacion seleccionada: Division\n\n"
-                            + "Resultado:%s", cadenaFinal, division);
+                    porcentaje = 0.0005;
+                    valorBase = 2.20;
+                    peaje = avaluo * porcentaje;
+                    peaje = peaje + valorBase;
+                    recargo = 0;
+                    total = peaje + recargo;
+                    cadenaFinal = String.format("%sTipo de vehiculo: Vehículo liviano particular\n"
+                            + "Avaluo: $%.2f\n"
+                            + "Valor base del peaje: $%.2f\n"
+                            + "Recargo: $%.2f\n\n"
+                            + "Total a cancelar: $%.2f\n", cadenaFinal, avaluo, peaje, recargo, total);
                     break;
-
-                case 5:
-                    residuo = num1 % num2;
-                    cadenaFinal = String.format("%sOperacion seleccionada: Residuo\n\n"
-                            + "Resultado:%s", cadenaFinal, residuo);
-                    break;
-                case 6:
-                    potencia = Math.pow(num1, num2);
-                    cadenaFinal = String.format("%sOperacion seleccionada: Potencia\n\n"
-                            + "Resultado:%s", cadenaFinal, potencia);
-
                 default:
                     System.out.println("ninguna de las opciones anteriores es "
-                            + "correcta");
+                            + "valida");
                     break;
             }
             System.out.printf("%s", cadenaFinal);
-
         }
     }
 }
-
